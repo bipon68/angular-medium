@@ -1,0 +1,10 @@
+table thead {
+    background-color: lightgray;
+    font-weight: bold;
+}
+img.logo {
+    height: 75px;
+}
+img.logo.hidden {
+    display: none;
+}

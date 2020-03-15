@@ -1,0 +1,24 @@
+
+<h3>Child component <span><strong>Value {{value}}</strong></span></h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Show/Hide</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let logo of logos">
+            <td>
+                <img class="logo" [src]="logo.imageUrl" [class.hidden]="!logo.visible" alt="" style="max-width: 200px;">
+            </td>
+            <td>
+                <button (click)="logo.visible = !logo.visible">
+                    <span *ngIf="logo.visible">Hide</span>
+                    <span *ngIf="!logo.visible">Show</span>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

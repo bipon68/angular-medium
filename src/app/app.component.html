@@ -1,20 +1,103 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
+
+
+<!-- <ol>
+    <li *ngFor="let message of messages">
+        {{message}}
+    </li>
+</ol> -->
+<p>{{dependencyTitle}}</p>
+
+<button (click)="currentValue = currentValue + 1">Increment Value</button>
+<app-list [value]="currentValue"></app-list>
+
+<!-- <app-gallery></app-gallery> -->
+
+<h1>Demo App</h1>
+<hr />
+<strong>Example List Item:</strong>
+<!-- {{biponIP}} -->
 <ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
+    <li *ngFor="let item of dataItems">
+        {{item.title}}
+    </li> 
 </ul>
+
+
+
+
+
+<app-item-one-obser></app-item-one-obser>
+<app-item-two-obser></app-item-two-obser>
+<app-item-three-obser></app-item-three-obser>
+
+
+<!-- <app-image-component></app-image-component>
+
+<app-image-component></app-image-component> -->
+
+
+
+
+<div>
+    <input type="text" test-directive (keyup)="keyup($event)" />
+</div>
+
+<p   [test-directive]="color">Highlight me!</p>
+
+<p [test-directive]="color" defaultColor="violet">
+  Highlight me too!
+</p>
+
+<hr>
+<p><i>Mouse over the following lines to see fixed highlights</i></p>
+<p [test-directive]="'yellow'">Highlighted in yellow</p>
+<p [test-directive]="'orange'">Highlighted in orange</p>
+
+
+
+
+<!-- <p>
+    <label for="showPanelCheck">Show Panel?</label>
+    <input id="showPanelCheck" type="checkbox" [(ngModel)]="showPanel" />
+</p>
+<p *ngIf="showPanel">
+    OWW! MY Panel is Shown
+</p>
+
+<p [ngClass]="getClasses()">
+    Dummy Custom Classes
+</p>
+
+<p [ngStyle]="getStyles()">
+    Dummy Custom Styles
+</p> -->
+
+<!-- <h2>{{title}}</h2>
+<form>
+    <fieldset>
+        <legend>Indicator</legend>
+        <input type="checkbox" [(ngModel)]="indicator" />
+    </fieldset>
+    <fieldset>
+        <legend>Count</legend>
+        <input type="range" min="0" max="5" step="1" [(ngModel)]="count" />
+    </fieldset>
+    <fieldset>
+        <legend>Name List</legend>
+        <ol>
+            <li *ngFor="let name of nameList">
+                {{name}}
+            </li>
+        </ol>
+    </fieldset>
+    <fieldset>
+        <legend>Results</legend>
+        <ul>
+            <li><strong>Indicator:</strong> {{indicator}}</li>
+            <li><strong>Count:</strong> {{count}}</li>
+            <li><strong>Title:</strong> {{title}}</li>
+            <li><strong>Name List:</strong>  {{nameList}}</li>
+        </ul>
+    </fieldset>
+</form> -->
 
