@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ItemList } from './model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class SampleService {
    return this.numberObj$;
   }
 
-  getDataList(){
+  getDataList():Observable<ItemList[]>{
     return this.http.get<ItemList[]>('https://jsonplaceholder.typicode.com/posts');
   }
 

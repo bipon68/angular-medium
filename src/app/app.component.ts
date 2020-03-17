@@ -1,10 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { SampleService } from './sample.service';
 import { Component, OnInit, AfterContentInit, AfterViewInit } from '@angular/core';
-import {Http, Response} from '@angular/http';
+// import {Http, Response} from '@angular/http';
 import { ItemList } from './model';
 import { MessageProvider } from './test.message';
-
+import { map } from 'rxjs/operators';
 
 
 @Component({
@@ -30,15 +31,20 @@ export class AppComponent implements OnInit, AfterContentInit, AfterViewInit {
 
     public biponIP: string;
     public json: any;
+    dataItems2:ItemList[]=[];
 
     constructor(
       private sampleService:SampleService, 
-      private http: Http, 
-      private _messageProvider: MessageProvider) {  
+      private _messageProvider: MessageProvider, private httpclient: HttpClient) {  
       // this.getIPAddress()
           // ipvalue => this.biponIP = ipvalue.json().origin;
-          this.dependencyTitle = _messageProvider.getMessage();
-      this.getDummyApiData();
+          // this.dependencyTitle = _messageProvider.getMessage();
+          this.getDummyApiData2()
+            .subscribe(res => {
+              this.dataItems2 = res;
+          });
+
+        this.getDummyApiData();
     }
     ngOnInit(){
       this.messages.push('OnInit');
@@ -51,19 +57,26 @@ export class AppComponent implements OnInit, AfterContentInit, AfterViewInit {
     }
 
     // private getSubApiData(): Observable<Response>{
-    //   return this.http.get('https://jsonplaceholder.typicode.com/posts')
+    //   return this.http.get('https://jsonplaceholder.typicode.com/posts') 
     // }
 
-    private getIPAddress() {
+    // private getIPAddress() {
+    //   // return this.http.get('http://httpbin.org/ip')
+    //   this.http.get('https://jsonplaceholder.typicode.com/posts')
+    //     .toPromise()
+    //     .then(response => this.biponIP = response.json())
+    //     .then(json => console.log(this.biponIP))
+    //     .catch(error => console.log(error))
+    // }
+
+    //Service with method calling itemList endpoint:
+    private getDummyApiData2() : Observable<ItemList[]> {
       // return this.http.get('http://httpbin.org/ip')
-      this.http.get('https://jsonplaceholder.typicode.com/posts')
-        .toPromise()
-        .then(response => this.biponIP = response.json())
-        .then(json => console.log(this.biponIP))
-        .catch(error => console.log(error))
+     return this.httpclient.get<ItemList[]>('https://jsonplaceholder.typicode.com/posts');
     }
 
    dataItems:ItemList[]=[];
+  //  dataItems$:Observable<ItemList[]>;
 
     private getDummyApiData(){
       // this.http.get('https://jsonplaceholder.typicode.com/posts')
@@ -79,6 +92,16 @@ export class AppComponent implements OnInit, AfterContentInit, AfterViewInit {
        console.log(data);
         this.dataItems=data;
       })
+
+
+      // this.sampleService.getDataList().pipe(map(x=> x.map(y=>{
+      //   y.title=   y.title + '  2345345';
+      //   return y;
+      // }))).subscribe(data=>{
+      //  console.log(data);
+      //   this.dataItems=data;
+      // })
+
     }
 
     public getClasses(){
